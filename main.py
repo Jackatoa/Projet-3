@@ -18,11 +18,11 @@ class Main:
     invpotion = Tile()
     invpuppet = Tile()
     itemscollected = 0
-
+    level = []
     def map(self):
         """Generate all the map tiles"""
         ordo = 0
-        for x in niveaux.niveau2:
+        for x in Main.level:
             absc = 0
             for y in list(x):
                 if y == "#":
@@ -43,7 +43,7 @@ class Main:
     def getposition(self, indice):
         """Take the indice to return the coordinates """
         ordo = 0
-        for x in niveaux.niveau2:
+        for x in Main.level:
             absc = 0
             for y in list(x):
                 if y == indice:
@@ -60,7 +60,7 @@ class Main:
         """Take 3 differents random coordinates for the items"""
         waylst = []
         ordo = 0
-        for x in niveaux.niveau2:
+        for x in Main.level:
             absc = 0
             for y in list(x):
                 if y == " ":
@@ -254,7 +254,7 @@ class Main:
         """Check if the move is possible"""
         ordo = 0
         walllst = []
-        for a in niveaux.niveau2:
+        for a in Main.level:
             absc = 0
             for b in list(a):
                 if b == "#":
@@ -269,6 +269,7 @@ pygame.init()
 
 clock = pygame.time.Clock()
 clock.tick(60)
+Main.level = niveaux.niveau2
 t = Tile()
 m = Main()
 m.generationinit()
