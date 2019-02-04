@@ -3,6 +3,7 @@ import niveaux
 import time
 import random
 
+
 class Tile:
     """Contain all the tiles functions"""
     level = []
@@ -12,8 +13,8 @@ class Tile:
     gamedisplay = pygame.display.set_mode((600, 600))
     invstart = 85
 
-    def __init__(self, img = None, text = None, height = 40, lenght = 40, displayed =
-    True, x = -100, y = -100, invx = -100, invy = -100):
+    def __init__(self, img=None, text=None, height=40, lenght=40, displayed=True, x=-100, y=-100,
+                 invx=-100, invy=-100):
         Tile.ID += 1
         self.ID = Tile.ID
         self.startx = x
@@ -56,7 +57,6 @@ class Tile:
     def cleanatile(self, img):
         """Clean the tile, take the new tile as parameter"""
         Tile.gamedisplay.blit(self.getsized(img), (self.x, self.y))
-
 
     def keyinput(self, event):
         """Check key pressed to move"""
@@ -101,8 +101,7 @@ class Tile:
 
     def checkpositems(self, item, temps):
         """Change the state of an item"""
-        t = Tile()
-        if self.checkpos(item) and item.obtenu != True:
+        if self.checkpos(item) and item.obtenu is not True:
             item.message_display(temps)
             Tile.itemscollected += 1
             item.obtenu = True
@@ -111,7 +110,7 @@ class Tile:
 
     def checkitems(self, a, b, c):
         """Check if the character have picked up all items"""
-        if a.obtenu != True or b.obtenu != True or c.obtenu != True:
+        if a.obtenu is not True or b.obtenu is not True or c.obtenu is not True:
             return True
 
     def checkposevent(self, a, b, c, d, e, f):
@@ -140,6 +139,7 @@ class Tile:
                 f.displayed = False
 
     def resetitempos(self):
+        """Reset positions of items, and inventory items"""
         self.cleanatile("images/chemin1.png")
         self.displayed = True
         self.obtenu = False
@@ -187,6 +187,7 @@ class Tile:
         Tile.gamedisplay.blit(sizedimg, (self.invx, self.invy))
 
     def checkinventory(self):
+        """Check if inventory should be displayed"""
         if self.obtenu:
             self.displayinventorytile()
 
@@ -232,9 +233,3 @@ class Tile:
                 absc += 40
             ordo += 40
             i += 1
-
-
-
-
-
-

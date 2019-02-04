@@ -1,13 +1,10 @@
 import pygame
 from tile import Tile
 import niveaux
-import random
-import time
 
 
-class Main():
-
-
+class Main:
+    """Main Class"""
     jack = Tile("images/MacGyver.png", "Le gardien tire sur Richard")
     lava = Tile("images/lava.png", "Tu aurais du apporter des saucisses")
     gardien = Tile("images/Gardien.png", "Le gardien prends sa pause café")
@@ -17,7 +14,6 @@ class Main():
     exit = Tile("images/chemin1.png", "Bravo Richard !")
     mur = Tile("images/mur1.png")
     chemin = Tile("images/chemin1.png")
-    box = Tile("images/box.png", "box", 600, 80, True, 0, 0)
 
     def game(self):
         """Main game function"""
@@ -66,7 +62,6 @@ class Main():
         t.displayinventory()
         t.score()
 
-
     def generateposition(self):
         """Generate positions of char and events"""
         t.generateitempos(Main.potion, Main.syringe, Main.puppet)
@@ -100,17 +95,6 @@ class Main():
                 Main.mur.setpos(absc, ordo)
                 Main.mur.display()
             absc += 40
-
-
-
-
-
-
-
-
-
-
-
 
 
 pygame.init()
