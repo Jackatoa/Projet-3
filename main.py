@@ -1,19 +1,19 @@
 import pygame
 from tile import Tile
-import niveaux
+import levels
 
 
 class Main:
     """Main Class"""
     jack = Tile("images/MacGyver.png", "Le gardien tire sur Richard")
     lava = Tile("images/lava.png", "Tu aurais du apporter des saucisses")
-    gardien = Tile("images/Gardien.png", "Le gardien prends sa pause café")
+    guardian = Tile("images/guardian.png", "Le gardien prends sa pause café")
     syringe = Tile("images/seringue.png", "Une seringue vide...")
     potion = Tile("images/potion.png", "Une bouteille rempli de sang... ")
     puppet = Tile("images/poupee.png", "Une poupée vaudou vampire ? Intéressant...")
-    exit = Tile("images/chemin1.png", "Bravo Richard !")
-    mur = Tile("images/mur1.png")
-    chemin = Tile("images/chemin1.png")
+    exit = Tile("images/way.png", "Bravo Richard !")
+    wall = Tile("images/wall.png")
+    way = Tile("images/way.png")
 
     def game(self):
         """Main game function"""
@@ -26,7 +26,7 @@ class Main:
                 if event.type == pygame.KEYUP:
                     Main.jack.keyinput(event)
                     Main.jack.checkposevent(Main.puppet, Main.syringe, Main.potion, Main.exit,
-                                            Main.lava, Main.gardien)
+                                            Main.lava, Main.guardian)
                     m.displayworld()
                     pygame.display.update()
 
@@ -37,14 +37,14 @@ class Main:
             absc = 0
             for y in list(x):
                 if y == "#":
-                    Main.mur.setpos(absc, ordo)
-                    Main.mur.display()
+                    Main.wall.setpos(absc, ordo)
+                    Main.wall.display()
                 elif y == "D":
                     Main.lava.setpos(absc, ordo)
                     Main.lava.display()
                 else:
-                    Main.chemin.setpos(absc, ordo)
-                    Main.chemin.display()
+                    Main.way.setpos(absc, ordo)
+                    Main.way.display()
                 absc += 40
             ordo += 40
 
@@ -52,7 +52,7 @@ class Main:
         """Display chars, items, score, inventory"""
         m.cleanscore()
         Main.jack.shoulditbedisplayed()
-        Main.gardien.shoulditbedisplayed()
+        Main.guardian.shoulditbedisplayed()
         Main.potion.shoulditbedisplayed()
         Main.syringe.shoulditbedisplayed()
         Main.puppet.shoulditbedisplayed()
@@ -74,7 +74,7 @@ class Main:
                     Main.jack.starty = ordo
                     Main.jack.setpos(absc, ordo)
                 if y == "G":
-                    Main.gardien.setpos(absc, ordo)
+                    Main.guardian.setpos(absc, ordo)
                 if y == "D":
                     Main.lava.setpos(absc, ordo)
                 if y == "A":
@@ -89,11 +89,11 @@ class Main:
         absc = 0
         for y in lst:
             if y == "#":
-                Main.mur.setpos(absc, ordo)
-                Main.mur.display()
+                Main.wall.setpos(absc, ordo)
+                Main.wall.display()
             if y == " ":
-                Main.mur.setpos(absc, ordo)
-                Main.mur.display()
+                Main.wall.setpos(absc, ordo)
+                Main.wall.display()
             absc += 40
 
 
@@ -101,7 +101,7 @@ pygame.init()
 
 clock = pygame.time.Clock()
 clock.tick(60)
-Tile.level = niveaux.niveau2
+Tile.level = levels.level2
 t = Tile()
 m = Main()
 m.generateposition()

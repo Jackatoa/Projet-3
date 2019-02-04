@@ -1,5 +1,5 @@
 import pygame
-import niveaux
+import levels
 import time
 import random
 
@@ -72,7 +72,7 @@ class Tile:
     def keyinputcheck(self, addx, addy):
         """Modifie position if move is possible"""
         if self.checkmove(self.x + addx, self.y + addy):
-            self.cleanatile("images/chemin1.png")
+            self.cleanatile("images/way.png")
             self.setpos(self.x + addx, self.y + addy)
 
     def checkmove(self, x, y):
@@ -140,7 +140,7 @@ class Tile:
 
     def resetitempos(self):
         """Reset positions of items, and inventory items"""
-        self.cleanatile("images/chemin1.png")
+        self.cleanatile("images/way.png")
         self.displayed = True
         self.obtenu = False
         Tile.invstart = 85
@@ -214,20 +214,20 @@ class Tile:
 
     def cleanmessage(self):
         """Clean the texts"""
-        murimg = pygame.transform.scale(pygame.image.load("images/mur1.png"), (40, 40))
-        cheminimg = pygame.transform.scale(pygame.image.load("images/chemin1.png"), (40, 40))
+        wallimg = pygame.transform.scale(pygame.image.load("images/wall.png"), (40, 40))
+        wayimg = pygame.transform.scale(pygame.image.load("images/way.png"), (40, 40))
         lavaimg = pygame.transform.scale(pygame.image.load("images/lava.png"), (40, 40))
 
         ordo = 0
         i = 0
         while i < 2:
-            lst = niveaux.niveau2[i]
+            lst = levels.level2[i]
             absc = 0
             for y in lst:
                 if y == " " or "A" or "G" or "M":
-                    Tile.gamedisplay.blit(cheminimg, (absc, ordo))
+                    Tile.gamedisplay.blit(wayimg, (absc, ordo))
                 if y == "#":
-                    Tile.gamedisplay.blit(murimg, (absc, ordo))
+                    Tile.gamedisplay.blit(wallimg, (absc, ordo))
                 if y == "D":
                     Tile.gamedisplay.blit(lavaimg, (absc, ordo))
                 absc += 40
