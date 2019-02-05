@@ -85,7 +85,7 @@ class Main:
     def cleanscore(self):
         """Clean the score"""
         ordo = 560
-        lst = niveaux.niveau2[14]
+        lst = levels.level2[14]
         absc = 0
         for y in lst:
             if y == "#":
