@@ -6,6 +6,7 @@ import random
 
 
 class Main:
+    """Main class with main conditions and game functions"""
     gamecontinue = True
     maplist = [line.rstrip('\n') for line in open('levels.txt')]
     lava = Tile("images/lava.png", "Tu aurais du apporter des saucisses !")
@@ -17,6 +18,7 @@ class Main:
     syringe = Item("images/seringue.png", "Une seringue vide...")
 
     def game(self):
+        """Main game function"""
         m.display_world()
         pygame.display.update()
         while Main.gamecontinue:
@@ -30,6 +32,7 @@ class Main:
                     pygame.display.update()
 
     def generate_main_tiles_pos(self):
+        """Generate positions for main tiles"""
         ordo = 0
         for x in Main.maplist:
             absc = 0
@@ -44,6 +47,7 @@ class Main:
             ordo += 40
 
     def generate_items_pos(self):
+        """Generate 3 random differents free positions for items"""
         ordo = 0
         waylst = []
         for a in Main.maplist:
@@ -59,10 +63,12 @@ class Main:
         Main.potion.set_pos(*waylst[2])
 
     def generate_pos(self):
+        """Contain all the positions generations functions"""
         m.generate_main_tiles_pos()
         m.generate_items_pos()
 
     def generate_map(self):
+        """Generate the main map"""
         way = Tile("images/way.png")
         wall = Tile("images/wall.png")
         ordo = 0
@@ -82,11 +88,13 @@ class Main:
             ordo += 40
 
     def check_item_event(self):
+        """Check if the main character is on an item"""
         lstitems = [Main.potion, Main.puppet, Main.syringe]
         for item in lstitems:
             Main.jack.is_jack_on_item(item)
 
     def check_tile_event(self):
+        """Check if the main character is on an event tile"""
         if Main.jack.get_pos() == Main.exit.get_pos():
             Main.gamecontinue = False
             Main.exit.message_display_text(2)
@@ -106,22 +114,25 @@ class Main:
                 Main.gardian.displayed = False
 
     def check_events(self):
+        """Contain all the position checks functions"""
         m.check_item_event()
         m.check_tile_event()
 
     def score(self):
+        """Display the score"""
         color = (255, 255, 255)
         Tile.gamedisplay.blit(
             pygame.font.SysFont(None, 25).render("Objets ramassés: " + str(Item.itemscollected) +
                                                  "/3", True, color), (420, 570))
 
     def inventory(self):
-        """Inventory text"""
+        """Display the text inventory"""
         color = (255, 255, 255)
         Tile.gamedisplay.blit(
             pygame.font.SysFont(None, 25).render("Inventaire : ", True, color), (20, 570))
 
     def display_world(self):
+        """Contain all the display functions"""
         lstitems = [Main.potion, Main.puppet, Main.syringe]
         t.clean_ui()
         for x in lstitems:

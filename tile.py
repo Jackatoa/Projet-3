@@ -3,6 +3,7 @@ import time
 
 
 class Tile:
+    """Contain all the functions relative to all tiles"""
     gamedisplay = pygame.display.set_mode((600, 600))
 
     def __init__(self, img=None, text=None):
@@ -33,6 +34,7 @@ class Tile:
         Tile.gamedisplay.blit(self.get_sized(height, lenght), (self.x, self.y))
 
     def should_it_be_displayed(self):
+        """Check if a tile should be displayed"""
         if self.displayed:
             return self.display()
 
@@ -43,6 +45,7 @@ class Tile:
         Tile.gamedisplay.blit(self.get_sized(40, 40, img), (self.x, self.y))
 
     def clean_ui(self):
+        """Clean all the UI line"""
         way = Tile("images/way.png")
         wall = Tile("images/wall.png")
         maplist = [line.rstrip('\n') for line in open('levels.txt')]
@@ -60,6 +63,7 @@ class Tile:
             ordo += 40
 
     def display_message_box(self):
+        """A nice box to fit message in"""
         box = Tile("images/box.png")
         box.set_pos(0, 0)
         box.display(600, 80)

@@ -4,20 +4,24 @@ import pygame
 
 
 class Character(Tile):
+    """Contain the functions relative to the main character"""
     def __init__(self, img, text):
         Tile.__init__(self, img, text)
         self.startx = -100
         self.starty = -100
 
     def set_starting_pos(self, x, y):
+        """Set the initial position"""
         self.startx = x
         self.starty = y
         self.set_pos(x, y)
 
     def get_starting_pos(self):
+        """Return the initial position"""
         return self.startx, self.starty
 
     def go_to_start(self):
+        """Set the main character position to the initial one"""
         self.set_pos(*self.get_starting_pos())
 
     def check_move(self, x, y):
@@ -53,5 +57,6 @@ class Character(Tile):
             self.key_input_check(0, 40)
 
     def is_jack_on_item(self, item):
+        """Check if the main character is on the same position as an item"""
         if self.get_pos() == item.get_pos() and item.collected is not True:
             return item.item_event()
