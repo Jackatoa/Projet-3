@@ -5,6 +5,7 @@ import pygame
 
 class Character(Tile):
     """Contain the functions relative to the main character"""
+
     def __init__(self, img, text):
         Tile.__init__(self, img, text)
         self.startx = -100
