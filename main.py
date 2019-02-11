@@ -101,7 +101,7 @@ class Main:
         if Main.jack.get_pos() == Main.lava.get_pos():
             Main.jack.go_to_start()
             Main.lava.message_display_text(1)
-        if Main.jack.get_pos() == Main.gardian.get_pos():
+        if Main.jack.get_pos() == Main.gardian.get_pos() and Main.gardian.displayed:
             if Item.itemscollected != 3:
                 Item.itemscollected = 0
                 Main.puppet.reset_item()
